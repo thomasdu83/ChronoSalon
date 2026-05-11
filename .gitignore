@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.test_tmp/
+.chronosalon_server.pid
+.venv/
+*.pyc
+src/.env
+dist/
+build/
+node_modules/

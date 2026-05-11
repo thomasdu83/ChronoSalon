@@ -1,0 +1,64 @@
+# ChronoSalon model configuration template.
+# Real API keys are read from src/.env through the environment variable names below.
+
+models:
+  room_builder:
+    provider: "moonshot"
+    model_name: "moonshot-v1-128k"
+    api_key_env: "KIMI_API_KEY"
+    base_url: "https://api.moonshot.cn/v1"
+    temperature: 0.7
+    max_tokens: 2000
+    description: "Builds structured historical chat room drafts from student topics."
+
+  orchestrator:
+    provider: "deepseek"
+    model_name: "deepseek-chat"
+    api_key_env: "DEEPSEEK_API_KEY"
+    base_url: "https://api.deepseek.com"
+    temperature: 0.7
+    max_tokens: 1200
+    description: "Plans who should speak next, how many automatic replies to trigger, and what each speaker should do."
+
+  character_responder:
+    provider: "deepseek"
+    model_name: "deepseek-chat"
+    api_key_env: "DEEPSEEK_API_KEY"
+    base_url: "https://api.deepseek.com"
+    temperature: 0.8
+    max_tokens: 1000
+    description: "Generates vivid but bounded historical character group-chat messages."
+
+  moderator:
+    provider: "deepseek"
+    model_name: "deepseek-chat"
+    api_key_env: "DEEPSEEK_API_KEY"
+    base_url: "https://api.deepseek.com"
+    temperature: 0.6
+    max_tokens: 800
+    description: "Generates short host messages, lightweight corrections, and group-chat prompts."
+
+  review_generator:
+    provider: "moonshot"
+    model_name: "moonshot-v1-128k"
+    api_key_env: "KIMI_API_KEY"
+    base_url: "https://api.moonshot.cn/v1"
+    temperature: 0.4
+    max_tokens: 1800
+    description: "Turns chat history into study notes, character positions, misconceptions, and quiz questions."
+
+default:
+  provider: "moonshot"
+  model_name: "moonshot-v1-128k"
+  api_key_env: "KIMI_API_KEY"
+  base_url: "https://api.moonshot.cn/v1"
+  temperature: 0.4
+  max_tokens: 1200
+  description: "Fallback model setting."
+
+metadata:
+  version: "0.1.0"
+  project: "ChronoSalon"
+  updated: "2026-05-09"
+  note: "Do not store real API keys in this file."
+

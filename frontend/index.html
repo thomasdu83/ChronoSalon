@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>史境群聊 ChronoSalon</title>
+  <link rel="stylesheet" href="./styles/app.css?v=20260510-review-status" />
+</head>
+
+<body>
+  <main class="shell">
+    <section class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ChronoSalon</p>
+          <h1>史境群聊</h1>
+        </div>
+      </header>
+
+      <section class="entry-view" id="entryView" aria-label="进入聊天室">
+        <div class="entry-panel">
+          <div class="entry-copy">
+            <p class="eyebrow">开始一场历史群聊</p>
+            <h2>输入主题，选择聊天室类型</h2>
+          </div>
+          <label class="field-wrap topic-field">
+            <span>群聊主题</span>
+            <input id="topicInput" list="topicSuggestions" autocomplete="off" placeholder="例如：安史之乱、商鞅变法、为什么改革总是困难？" />
+            <datalist id="topicSuggestions"></datalist>
+          </label>
+          <fieldset class="room-type-group">
+            <legend>选择聊天室类型</legend>
+            <label class="room-type-card active" data-room-type-card="historical_scene">
+              <input type="radio" name="roomType" value="historical_scene" checked />
+              <strong>历史现场</strong>
+              <span>尽量留在同一历史时空，让当事人和相关群体对话。</span>
+            </label>
+            <label class="room-type-card" data-room-type-card="cross_time">
+              <input type="radio" name="roomType" value="cross_time" />
+              <strong>跨时空讨论</strong>
+              <span>让不同时代人物围绕同一问题比较观点。</span>
+            </label>
+          </fieldset>
+          <button id="enterBtn" type="button">进入聊天室</button>
+          <div class="status-line" id="entryStatus" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="preview" id="choicePanel" hidden></section>
+
+      <section class="chat-layout" id="chatLayout" hidden>
+        <aside class="people-panel">
+          <h2>在群里的人</h2>
+          <div id="peopleList" class="people-list"></div>
+        </aside>
+
+        <section class="chat-panel">
+          <div class="chat-head">
+            <div>
+              <p class="eyebrow" id="chatMode">历史现场</p>
+              <h2 id="chatTitle">聊天室</h2>
+            </div>
+            <div class="chat-actions">
+              <button id="newRoomBtn" type="button">新建聊天室</button>
+              <button id="saveChatBtn" type="button">保存记录</button>
+              <button id="clearChatBtn" type="button">清空记录</button>
+              <button id="reviewBtn" type="button">学习回顾</button>
+            </div>
+          </div>
+          <div id="messages" class="messages" aria-live="polite"></div>
+          <div class="quick-questions" id="quickQuestions"></div>
+          <form class="composer" id="composer">
+            <div class="mention-field">
+              <input id="messageInput" autocomplete="off" placeholder="@安禄山 你为什么要起兵？" />
+              <div id="mentionMenu" class="mention-menu" role="listbox" hidden></div>
+            </div>
+            <button type="submit">发送</button>
+          </form>
+        </section>
+
+        <aside class="study-panel" hidden>
+          <div class="study-head">
+            <h2>学习回顾</h2>
+            <div class="study-actions">
+              <button id="exportReviewBtn" type="button">导出回顾</button>
+              <button id="closeReviewBtn" type="button">收起</button>
+            </div>
+          </div>
+          <div id="studyContent"></div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <script src="./scripts/app.js?v=20260510-review-status"></script>
+</body>
+
+</html>

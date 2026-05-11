@@ -1,0 +1,10 @@
+{
+  "name": "chronosalon",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "python chronosalon_cli.py serve --host 127.0.0.1 --port 8000",
+    "check:frontend": "node --check frontend/scripts/app.js",
+    "test": "python -m pytest -q"
+  }
+}

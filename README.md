@@ -55,10 +55,25 @@ ChronoSalon（史境群聊）是一个面向学生个人使用的历史人物 AI
 
 ## 本地运行
 
-启动后端 API 和前端页面：
+建议先创建虚拟环境并安装依赖：
 
 ```powershell
 cd F:\Thomas\QuantSystem\ChronoSalon
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -e .
+```
+
+如果只是希望在服务器上快速安装运行依赖，也可以使用：
+
+```powershell
+pip install -r requirements.txt
+```
+
+启动后端 API 和前端页面：
+
+```powershell
 python chronosalon_cli.py serve --host 127.0.0.1 --port 8000
 ```
 
@@ -98,9 +113,35 @@ python chronosalon_cli.py check-config
 ## 测试
 
 ```powershell
+pip install -e ".[dev]"
 python -m pytest -q
 node --check frontend\scripts\app.js
 ```
+
+## 云服务器部署
+
+推荐将项目放在 `D:\apps\ChronoSalon`，并按以下顺序部署：
+
+```powershell
+cd D:\apps\ChronoSalon
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -e .
+python -m uvicorn chronosalon.api:app --host 0.0.0.0 --port 8000
+```
+
+如果服务器只需要运行应用，不需要测试工具，也可以改用：
+
+```powershell
+pip install -r requirements.txt
+python -m uvicorn chronosalon.api:app --host 0.0.0.0 --port 8000
+```
+
+部署前还需确认以下文件已经配置完成：
+
+- `src/.env`
+- `src/config/model_config.yaml`
 
 ## 建议开发顺序
 
